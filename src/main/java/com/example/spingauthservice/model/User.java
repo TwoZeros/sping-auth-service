@@ -1,29 +1,39 @@
 package com.example.spingauthservice.model;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.List;
 
 public class User {
-private String login;
-private String password;
-List<Authorities> authoritiesList;
-
-    public User(String login, String password, List<Authorities> authoritiesList) {
-        this.login = login;
+    @NotNull
+    @NotBlank(message = "поле user не должно быть пустым")
+    @Size(min = 2, max=64, message ="Недопустимая длина поля user")
+    private String user;
+    @NotNull
+    @NotBlank(message = "поле password не должно быть пустым")
+    @Size(min = 2, max=64, message ="Недопустимая длина поля password")
+    private String password;
+    List<Authorities> authoritiesList;
+    public User() {
+    }
+    public User(String user, String password, List<Authorities> authoritiesList) {
+        this.user = user;
         this.password = password;
         this.authoritiesList = authoritiesList;
     }
 
-    public User(String login, String password) {
-        this.login = login;
+    public User(String user, String password) {
+        this.user = user;
         this.password = password;
     }
 
-    public String getLogin() {
-        return login;
+    public String getUser() {
+        return user;
     }
 
-    public void setLogin(String login) {
-        this.login = login;
+    public void setUser(String user) {
+        this.user = user;
     }
 
     public String getPassword() {
